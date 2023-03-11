@@ -1,0 +1,25 @@
+{
+  "name": "node_fullcycle",
+  "version": "1.0.0",
+  "description": "node plus nginx plus mysql challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eduardo-villasboas/nginx-with-node.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "eduardovillasboassantos@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eduardo-villasboas/nginx-with-node/issues"
+  },
+  "homepage": "https://github.com/eduardo-villasboas/nginx-with-node#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
