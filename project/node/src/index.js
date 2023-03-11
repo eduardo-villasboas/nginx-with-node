@@ -13,27 +13,17 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
-const sql = `insert into people(name) values ('eduardo')`
-connection.query(sql)
-
-class People {
-    constructor(id, name) {
-        this.id = id
-        this.name = name
-    }
+function insertOn() {
+    const sql = `insert into people(name) values ('eduardo')`
+    connection.query(sql)    
 }
+
+insertOn()
 
 function getAllPeople(sendResult) {
 
     const getAllPeopelSql = 'select * from people'
     connection.query(getAllPeopelSql, (_err, result, _fields) => {
-        let peopleList = []
-        peopleList.push(
-            new People(
-                1,
-                "Eduardo"
-            )
-        )
         sendResult(result)                
     })
 
