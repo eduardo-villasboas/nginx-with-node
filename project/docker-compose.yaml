@@ -2,54 +2,52 @@ version: '3'
 
 services:
   db_app:
-    image: mysql:8
+    image: eduardovillasboas/db-mysql-app:latest
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
     command: --innodb-use-native-aio=0
     container_name: db_app
     restart: always
     tty: true
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./mysql/mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
     networks:
-      - node_challenge_network
+      - node_network
 
   node_app:
     image: eduardovillasboas/node-fullcycle-challenge
     container_name: node_app
     build:
-      context: node 
+      context: ./node 
       dockerfile: Dockerfile
     volumes:
       - ./node/src:/usr/app/src
     depends_on:
       - db_app
     networks:
-      - node_challenge_network
+      - node_network
     tty: true
-    command: wait-for db_app:3306 -t 20 -- docker-entrypoint.sh 
-    ports:
-      - "3000:3000"
+    entrypoint: wait-for db_app:3306 -t 40  -- node .
     
-  nginx:
+  nginx_app:
     image: eduardovillasboas/nginx-fullcycle-challenge
     container_name: nginx_app
     build: 
-      context: nginx
+      context: ./nginx
       dockerfile: Dockerfile
-    depends_on:
-      - node_app
-#    command: wait-for node_app:3000 -t 20 -- docker-entrypoint.sh 
     tty: true
     networks:
-      - node_challenge_network
+      - node_network
     ports:
       - "8080:80"
     
-
 networks:
-  node_challenge_network:
+  node_network:
+    name: node_network
     driver: bridge
     
 

@@ -12,4 +12,3 @@ RUN apt update && \
         
 EXPOSE 3000
 
-ENTRYPOINT [ "node", "." ]
