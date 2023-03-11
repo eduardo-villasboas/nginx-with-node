@@ -1,0 +1,5 @@
+
+project/mysql/**
+project/node/src/node_modules/**
+project/node/src/node_modules
+project/node/src/node_modules/*
