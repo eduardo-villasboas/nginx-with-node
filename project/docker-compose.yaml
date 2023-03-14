@@ -24,8 +24,6 @@ services:
     build:
       context: ./node 
       dockerfile: Dockerfile
-    volumes:
-      - ./node/src:/usr/app/src
     depends_on:
       - db_app
     networks:
