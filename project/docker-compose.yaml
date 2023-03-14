@@ -29,7 +29,7 @@ services:
     networks:
       - node_network
     tty: true
-    entrypoint: wait-for db_app:3306 -t 40  -- node .
+    entrypoint: wait-for db_app:3306 -t 40 -- node .
     
   nginx_app:
     image: eduardovillasboas/nginx-fullcycle-challenge
@@ -42,6 +42,7 @@ services:
       - node_network
     ports:
       - "8080:80"
+    entrypoint: wait-for node_app:3000 -t 40 -- /docker-entrypoint.sh nginx -g 'daemon off;'
     
 networks:
   node_network:
